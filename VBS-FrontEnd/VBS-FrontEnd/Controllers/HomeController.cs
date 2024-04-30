@@ -10,7 +10,13 @@ namespace VBS_FrontEnd.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            List<string> list = new List<string>();
+            list.Add("u mama");
+            list.Add("u pzpz");
+            list.Add("u qzdqzd");
+            list.Add("u gggg");
+            list.Add("u rikkie");
+            return View(list);
         }
 
         public ActionResult About()
