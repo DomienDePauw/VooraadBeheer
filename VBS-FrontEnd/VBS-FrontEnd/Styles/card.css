@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
+    background: #f2eee6;
     padding: 0.5em;
     padding-bottom: 3.4em;
     margin: 0px 40px 0px 40px;
@@ -43,7 +43,7 @@
 
 .imageCard img {
     padding: 5px;
-    background: lightgrey;
+    background: transparent;
     max-width: 100%;
     max-height: 100%;
     display: block;
