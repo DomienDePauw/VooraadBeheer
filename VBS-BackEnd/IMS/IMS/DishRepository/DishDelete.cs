@@ -32,7 +32,6 @@ namespace InventoryManagementSystem.DishRepository
             }
             catch (Exception ex)
             {
-                // Log exception details if needed
                 Console.WriteLine(ex.ToString());
             }
 
