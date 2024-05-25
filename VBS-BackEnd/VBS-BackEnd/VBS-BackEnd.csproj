@@ -162,6 +162,7 @@
     </Compile>
     <Compile Include="Models\Dish.cs" />
     <Compile Include="Models\FoodGroups.cs" />
+    <Compile Include="Models\FoodInventory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
