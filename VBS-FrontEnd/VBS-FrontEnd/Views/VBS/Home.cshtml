@@ -5,6 +5,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +13,9 @@
     <link href="VBS-FrontEnd.styles.css" rel="stylesheet">
 
     <style>
-          body {
-            background: rgb(229,248,254);
-            background: linear-gradient(145deg, rgba(229,248,254,1) 0%, rgba(0,115,238,1) 100%);
+        body {
+            background: rgb(229, 248, 254);
+            background: linear-gradient(145deg, rgba(229, 248, 254, 1) 0%, rgba(0, 115, 238, 1) 100%);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -22,24 +23,130 @@
             color: white;
         }
 
-        .title1{
+        .title1 {
             text-align: center;
             text-decoration: underline;
         }
 
-        .featuredRecipes{
-            border: 2px solid red;
-            height: 200px;
+        .featuredRecipes {
+
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 183px;
+
+
+        @*border:2pxsolidwhite;*@
+            border-radius: 35px;
+            max-height: 500px;
+            margin-top: 60px;
         }
 
-        .filler500{
+        .featuredRecipes img {
+            max-width: 200px;
+            padding: 10px;
+            border-radius: 25px;
+            height: auto;
+        }
+
+        .textAndButton1 {
+            margin-top: 10px;
+        }
+
+        .filler500 {
             height: 500px;
         }
 
+        .vieuwMoreBtn {
+            height: 50px;
+            margin: 5px;
+            width: 120px;
+            background: #444;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            cursor: pointer;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            font-family: Consolas, Courier New, monospace;
+            border: solid #404c5d 1px;
+            font-size: 16px;
+            color: white;
+            -webkit-transition: 500ms;
+            transition: 500ms;
+            border-radius: 5px;
+            background: linear-gradient(145deg, #2e2d2d, #212121);
+
+        }
+
+        .cardWrapper {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            justify-content: center;
+            @* border: 2px solid red; *@
+        }
+
+        .card {
+            position: relative;
+            width: 11.875em;
+            height: 16.5em;
+            box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 120ms;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            padding: 0.5em;
+            padding-bottom: 3.4em;
+            margin: 0px 40px 0px 40px;
+        }
+
+
+        .card .titleCard {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.9em;
+            position: absolute;
+            left: 0.625em;
+            bottom: 1.875em;
+            font-weight: 400;
+            color: #000;
+        }
+
+        .card .priceCard {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 0.9em;
+            position: absolute;
+            left: 0.625em;
+            bottom: 0.625em;
+            color: #000;
+        }
+
+
+        .card:active {
+            transform: scale(0.98);
+        }
+
+        
+        .imageCard img {
+            padding: 5px;
+            background: lightgrey;
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            /* Zorg ervoor dat de afbeelding zich correct gedraagt binnen de div */
+            margin: auto;
+            /* Optioneel: centreer de afbeelding binnen de div */
+        }
+
+
+        
     </style>
 
-    
+
 </head>
+
 <body>
     <form action="">
 
@@ -48,25 +155,50 @@
 
         <div class="featuredRecipes">
 
+
+            <img src="https://www.howtocook.recipes/wp-content/uploads/2021/05/Ratatouille-recipe-500x500.jpg" alt="">
+
+            <div class="textAndButton1">
+                <h2>Featured Recipes!</h2>
+                <p>Explore top-quality culinary blueprints</p>
+
+                <button class="vieuwMoreBtn">View More</button>
+            </div>
+
         </div>
 
+        <div class="cardWrapper">
 
+
+            <div class="card">
+                <div class="imageCard"><img src="https://h2.commercev3.net/cdn.gurneys.com/images/500/14602A.jpg"
+                        alt=""></div>
+                <span class="titleCard">Basil</span>
+                <span class="priceCard" style="color: green;">In stock</span>
+            </div>
+
+            <div class="card">
+                <div class="imageCard"> <img
+                        src="https://media.post.rvohealth.io/wp-content/uploads/2020/09/AN313-Tomatoes-732x549-Thumb.jpg"
+                        alt=""></div>
+                <span class="titleCard">Tomatoes</span>
+                <span class="priceCard"style="color: red;">Out of stock</span>
+            </div>
+
+            <div class="card">
+                <div class="imageCard"><img src="https://www.noracooks.com/wp-content/uploads/2020/05/square.jpg" alt=""></div>
+                <span class="titleCard">Cheese</span>
+                <span class="priceCard" style="color: green;">In stock</span>
+            </div>
+
+
+        </div>
 
         <div class="filler500"></div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    </form>    
+    </form>
 </body>
+
 </html>
