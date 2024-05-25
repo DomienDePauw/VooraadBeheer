@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace VBS_BackEnd.Models;
-
-public class FoodGroups
+namespace VBS_BackEnd.Models
 {
-    public int FoodGroupId { get; set; }
-    public string Name { get; set; }
-
-    public FoodGroups(int foodGroupId, string name)
+    public class FoodGroups
     {
-        FoodGroupId = foodGroupId;
-        Name = name;
+        public int FoodGroupId { get; set; }
+        public string Name { get; set; }
+
+        public FoodGroups(int foodGroupId, string name)
+        {
+            FoodGroupId = foodGroupId;
+            Name = name;
+        }
     }
 }
