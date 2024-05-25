@@ -140,7 +140,9 @@
     <Compile Include="App_Start\DataAccess.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VBSController.cs" />
     <Compile Include="DishRepository\DishDelete.cs" />
     <Compile Include="DishRepository\DishInsert.cs" />
     <Compile Include="DishRepository\DishQuery.cs" />
