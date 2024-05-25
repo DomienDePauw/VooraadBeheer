@@ -261,9 +261,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Libraries\DishRepository\DishDelete.cs" />
+    <Compile Include="Libraries\DishRepository\DishInsert.cs" />
+    <Compile Include="Libraries\DishRepository\DishQuery.cs" />
+    <Compile Include="Libraries\DishRepository\DishUpdate.cs" />
     <Compile Include="Libraries\Infrastucture\Dish.cs" />
     <Compile Include="Libraries\Infrastucture\Groups.cs" />
-    <Compile Include="Libraries\Infrastucture\FoodInventory.cs" />
+    <Compile Include="Libraries\Infrastucture\Inventory.cs" />
     <Compile Include="Libraries\Infrastucture\SubGroups.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -336,6 +340,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Libraries\InventroyRepository\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />
