@@ -1,12 +1,12 @@
-USE [master]
+﻿USE [master]
 GO
-/****** Object:  Database [InventoryManagement]    Script Date: 01/05/2024 02:47:13 ******/
+/****** Object:  Database [InventoryManagement]    Script Date: 25-5-2024 16:49:45 ******/
 CREATE DATABASE [InventoryManagement]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'InventoryManagement', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS01\MSSQL\DATA\InventoryManagement.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+( NAME = N'InventoryManagement', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\InventoryManagement.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
-( NAME = N'InventoryManagement_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS01\MSSQL\DATA\InventoryManagement_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+( NAME = N'InventoryManagement_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\InventoryManagement_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
  WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
 GO
 ALTER DATABASE [InventoryManagement] SET COMPATIBILITY_LEVEL = 160
@@ -82,50 +82,50 @@ ALTER DATABASE [InventoryManagement] SET QUERY_STORE (OPERATION_MODE = READ_WRIT
 GO
 USE [InventoryManagement]
 GO
-/****** Object:  Table [dbo].[Dish]    Script Date: 01/05/2024 02:47:14 ******/
+/****** Object:  Table [dbo].[Dish]    Script Date: 25-5-2024 16:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Dish](
-	[DishId] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](255) NOT NULL,
-	[Photo_url] [varchar](255) NULL,
-	[FoodRequirements] [varchar](255) NULL,
+	[PhotoUrl] [varchar](255) NULL,
+	[Requirements] [varchar](255) NULL,
 	[QuantityPer100GramAmount] [varchar](255) NULL,
 	[UnitInStock] [varchar](50) NULL,
-	[FoodGroupId] [int] NULL,
+	[GroupId] [int] NULL,
 	[SubgroupId] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
-	[DishId] ASC
+	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FoodGroups]    Script Date: 01/05/2024 02:47:14 ******/
+/****** Object:  Table [dbo].[Groups]    Script Date: 25-5-2024 16:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[FoodGroups](
-	[FoodGroupId] [int] IDENTITY(1,1) NOT NULL,
+CREATE TABLE [dbo].[Groups](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](255) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
-	[FoodGroupId] ASC
+	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FoodInventory]    Script Date: 01/05/2024 02:47:14 ******/
+/****** Object:  Table [dbo].[Inventory]    Script Date: 25-5-2024 16:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[FoodInventory](
+CREATE TABLE [dbo].[Inventory](
 	[FoodId] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](255) NOT NULL,
-	[Photo_url] [varchar](255) NULL,
-	[FoodGroupId] [int] NULL,
+	[PhotoUrl] [varchar](255) NULL,
+	[GroupId] [int] NULL,
 	[SubgroupId] [int] NULL,
 	[Quantity] [int] NULL,
 	[StockDate] [date] NULL,
@@ -136,35 +136,35 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FoodSubgroups]    Script Date: 01/05/2024 02:47:14 ******/
+/****** Object:  Table [dbo].[Subgroups]    Script Date: 25-5-2024 16:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[FoodSubgroups](
-	[SubgroupId] [int] IDENTITY(1,1) NOT NULL,
+CREATE TABLE [dbo].[Subgroups](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](255) NOT NULL,
-	[FoodGroupId] [int] NULL,
+	[GroupId] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
-	[SubgroupId] ASC
+	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[Dish]  WITH CHECK ADD FOREIGN KEY([FoodGroupId])
-REFERENCES [dbo].[FoodGroups] ([FoodGroupId])
+ALTER TABLE [dbo].[Dish]  WITH CHECK ADD FOREIGN KEY([GroupId])
+REFERENCES [dbo].[Groups] ([Id])
 GO
 ALTER TABLE [dbo].[Dish]  WITH CHECK ADD FOREIGN KEY([SubgroupId])
-REFERENCES [dbo].[FoodSubgroups] ([SubgroupId])
+REFERENCES [dbo].[Subgroups] ([Id])
 GO
-ALTER TABLE [dbo].[FoodInventory]  WITH CHECK ADD FOREIGN KEY([FoodGroupId])
-REFERENCES [dbo].[FoodGroups] ([FoodGroupId])
+ALTER TABLE [dbo].[Inventory]  WITH CHECK ADD FOREIGN KEY([GroupId])
+REFERENCES [dbo].[Groups] ([Id])
 GO
-ALTER TABLE [dbo].[FoodInventory]  WITH CHECK ADD FOREIGN KEY([SubgroupId])
-REFERENCES [dbo].[FoodSubgroups] ([SubgroupId])
+ALTER TABLE [dbo].[Inventory]  WITH CHECK ADD FOREIGN KEY([SubgroupId])
+REFERENCES [dbo].[Subgroups] ([Id])
 GO
-ALTER TABLE [dbo].[FoodSubgroups]  WITH CHECK ADD FOREIGN KEY([FoodGroupId])
-REFERENCES [dbo].[FoodGroups] ([FoodGroupId])
+ALTER TABLE [dbo].[Subgroups]  WITH CHECK ADD FOREIGN KEY([GroupId])
+REFERENCES [dbo].[Groups] ([Id])
 GO
 USE [master]
 GO
