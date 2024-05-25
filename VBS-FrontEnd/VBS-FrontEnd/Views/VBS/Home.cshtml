@@ -10,18 +10,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VSB</title>
-    <link href="VBS-FrontEnd.styles.css" rel="stylesheet">
+    <link href="~/Styles/style.css" rel="stylesheet">
+    <link href="~/Styles/card.css" rel="stylesheet">
+
+
 
     <style>
-        body {
-            background: rgb(229, 248, 254);
-            background: linear-gradient(145deg, rgba(229, 248, 254, 1) 0%, rgba(0, 115, 238, 1) 100%);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
 
-            color: white;
-        }
 
         .title1 {
             text-align: center;
@@ -74,7 +69,7 @@
             color: white;
             -webkit-transition: 500ms;
             transition: 500ms;
-            border-radius: 5px;
+            border-radius: 25px;
             background: linear-gradient(145deg, #2e2d2d, #212121);
 
         }
@@ -87,61 +82,15 @@
             @* border: 2px solid red; *@
         }
 
-        .card {
-            position: relative;
-            width: 11.875em;
-            height: 16.5em;
-            box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: all 120ms;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #fff;
-            padding: 0.5em;
-            padding-bottom: 3.4em;
-            margin: 0px 40px 0px 40px;
+        article{
+            width: 850px;
+            margin: 0 auto;
+            margin-top: 50px;
         }
 
 
-        .card .titleCard {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 0.9em;
-            position: absolute;
-            left: 0.625em;
-            bottom: 1.875em;
-            font-weight: 400;
-            color: #000;
-        }
-
-        .card .priceCard {
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            font-size: 0.9em;
-            position: absolute;
-            left: 0.625em;
-            bottom: 0.625em;
-            color: #000;
-        }
 
 
-        .card:active {
-            transform: scale(0.98);
-        }
-
-        
-        .imageCard img {
-            padding: 5px;
-            background: lightgrey;
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-            /* Zorg ervoor dat de afbeelding zich correct gedraagt binnen de div */
-            margin: auto;
-            /* Optioneel: centreer de afbeelding binnen de div */
-        }
-
-
-        
     </style>
 
 
@@ -193,6 +142,26 @@
 
 
         </div>
+        
+        <article>
+            <h3>Get started now: Manage Your Food Inventory with Nimble-it</h3>
+
+            <p>
+                Managing your food inventory can be challenging, but Nimble-it makes it easy!
+                Our web-based app helps you organize your food supplies and plan meals efficiently.
+            </p><br>
+
+            <h4>Why Choose Nimble-it?</h4>
+
+            <p>
+                Food is often bought in advance, leading to unused ingredients and leftovers. 
+                Nimble-it solves these issues by helping you track and use your food before it expires.
+            </p>
+
+            <button class="vieuwMoreBtn">Sign In</button>
+
+            
+        </article>
 
         <div class="filler500"></div>
 

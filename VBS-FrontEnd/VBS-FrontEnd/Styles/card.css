@@ -1,0 +1,53 @@
+﻿
+.card {
+    position: relative;
+    width: 11.875em;
+    height: 16.5em;
+    box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 120ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 0.5em;
+    padding-bottom: 3.4em;
+    margin: 0px 40px 0px 40px;
+}
+
+
+    .card .titleCard {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.9em;
+        position: absolute;
+        left: 0.625em;
+        bottom: 1.875em;
+        font-weight: 400;
+        color: #000;
+    }
+
+    .card .priceCard {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 0.9em;
+        position: absolute;
+        left: 0.625em;
+        bottom: 0.625em;
+        color: #000;
+    }
+
+
+    .card:active {
+        transform: scale(0.98);
+    }
+
+
+.imageCard img {
+    padding: 5px;
+    background: lightgrey;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    /* Zorg ervoor dat de afbeelding zich correct gedraagt binnen de div */
+    margin: auto;
+    /* Optioneel: centreer de afbeelding binnen de div */
+}
