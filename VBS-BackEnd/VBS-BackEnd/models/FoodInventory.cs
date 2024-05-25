@@ -28,7 +28,4 @@ public class FoodInventory
         FoodGroupId = foodGroupId;
         SubGroupId = subGroupId;
     }
-    {
-        
-    }
 }
