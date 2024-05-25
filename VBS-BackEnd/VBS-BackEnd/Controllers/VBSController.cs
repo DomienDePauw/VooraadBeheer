@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace VBS_BackEnd.Controllers
 {
-    public class HomeController : Controller
+    public class VBSController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Host()
         {
             ViewBag.Title = "Home Page";
 
