@@ -21,7 +21,6 @@ namespace VBS_FrontEnd.Controllers
 
         public ActionResult AddFood()
         {
-            ViewBag.Message = "Add your food here.";
 
             return View();
         }
