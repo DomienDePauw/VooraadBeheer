@@ -167,7 +167,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\VBS\Recipes.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -184,6 +183,7 @@
     <Content Include="Views\VBS\Home.cshtml" />
     <Content Include="Views\VBS\Stock.cshtml" />
     <Content Include="Views\VBS\AddFood.cshtml" />
+    <Content Include="Views\VBS\Recipes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
