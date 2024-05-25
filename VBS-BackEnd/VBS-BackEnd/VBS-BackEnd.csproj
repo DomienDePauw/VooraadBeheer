@@ -265,10 +265,10 @@
     <Compile Include="Libraries\DishRepository\DishInsert.cs" />
     <Compile Include="Libraries\DishRepository\DishQuery.cs" />
     <Compile Include="Libraries\DishRepository\DishUpdate.cs" />
-    <Compile Include="Libraries\Infrastucture\Dish.cs" />
-    <Compile Include="Libraries\Infrastucture\Groups.cs" />
-    <Compile Include="Libraries\Infrastucture\Inventory.cs" />
-    <Compile Include="Libraries\Infrastucture\SubGroups.cs" />
+    <Compile Include="Libraries\Infrastructure\Dish.cs" />
+    <Compile Include="Libraries\Infrastructure\Groups.cs" />
+    <Compile Include="Libraries\Infrastructure\Inventory.cs" />
+    <Compile Include="Libraries\Infrastructure\SubGroups.cs" />
     <Compile Include="Libraries\InventoryRepository\InventoryDelete.cs" />
     <Compile Include="Libraries\InventoryRepository\InventoryInsert.cs" />
     <Compile Include="Libraries\InventoryRepository\InventoryQuery.cs" />
