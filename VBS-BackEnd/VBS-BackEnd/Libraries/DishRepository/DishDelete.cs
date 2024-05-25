@@ -4,9 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 
-namespace VBS_BackEnd.Libraries.DishRepository
-{
-    public class DishDelete
-    {
+namespace VBS_BackEnd.Libraries.DishRepository {
+
+    public class DishDelete {
     }
 }
