@@ -269,6 +269,10 @@
     <Compile Include="Libraries\Infrastucture\Groups.cs" />
     <Compile Include="Libraries\Infrastucture\Inventory.cs" />
     <Compile Include="Libraries\Infrastucture\SubGroups.cs" />
+    <Compile Include="Libraries\InventoryRepository\InventoryDelete.cs" />
+    <Compile Include="Libraries\InventoryRepository\InventoryInsert.cs" />
+    <Compile Include="Libraries\InventoryRepository\InventoryQuery.cs" />
+    <Compile Include="Libraries\InventoryRepository\InventoryUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -341,7 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Libraries\InventroyRepository\" />
+    <Folder Include="Libraries\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />
