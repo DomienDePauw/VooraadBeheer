@@ -24,6 +24,8 @@ namespace VBS_BackEnd.Controllers {
                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                .Build();
 
+            string cs = configurationBuilder.GetConnectionString("voorraadbeheerConnectionString");
+
             return View();
         }
     }
