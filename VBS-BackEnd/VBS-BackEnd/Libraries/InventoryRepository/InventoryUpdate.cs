@@ -5,9 +5,9 @@ using System.Web;
 using Ado.Data.SqlServer;
 using System.Data.SqlClient;
 
-namespace VBS_BackEnd.Libraries.DishRepository
+namespace VBS_BackEnd.Libraries.InventoryRepository
 {
-    public class DishDelete
+    public class InventoryUpdate
     {
     }
 }
