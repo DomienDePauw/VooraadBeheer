@@ -141,9 +141,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DishRepository\DishDelete.cs" />
+    <Compile Include="DishRepository\DishInsert.cs" />
+    <Compile Include="DishRepository\DishQuery.cs" />
+    <Compile Include="DishRepository\DishUpdate.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InventoryRepository\InventoryDelete.cs" />
+    <Compile Include="InventoryRepository\InventoryInsert.cs" />
+    <Compile Include="InventoryRepository\InventoryQuery.cs" />
+    <Compile Include="InventoryRepository\InventoryUpdate.cs" />
     <Compile Include="Models\Dish.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
