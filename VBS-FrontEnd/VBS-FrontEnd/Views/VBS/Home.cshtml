@@ -12,23 +12,61 @@
     <link href="VBS-FrontEnd.styles.css" rel="stylesheet">
 
     <style>
-        td {
-            background-color:red;
-            
+          body {
+            background: rgb(229,248,254);
+            background: linear-gradient(145deg, rgba(229,248,254,1) 0%, rgba(0,115,238,1) 100%);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            color: white;
         }
+
+        .title1{
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .featuredRecipes{
+            border: 2px solid red;
+            height: 200px;
+        }
+
+        .filler500{
+            height: 500px;
+        }
+
     </style>
 
     
 </head>
 <body>
-   
-    <table>
-        <tr>
-            @foreach (string item in Model)
-            {
-                <td>@item</td>
-            }
-        </tr>
-    </table>
+    <form action="">
+
+        <h1 class="title1">Welcome to Nimble-it</h1>
+
+
+        <div class="featuredRecipes">
+
+        </div>
+
+
+
+        <div class="filler500"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </form>    
 </body>
 </html>
