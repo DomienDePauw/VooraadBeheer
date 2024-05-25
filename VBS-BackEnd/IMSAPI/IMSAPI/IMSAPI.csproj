@@ -156,7 +156,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VBSController.cs" />
+    <Compile Include="DataAccess\ConnectionStringBuilder.cs" />
+    <Compile Include="DataAccess\SqlServerDbAccess.cs" />
     <Compile Include="DishRepository\DishDelete.cs" />
     <Compile Include="DishRepository\DishInsert.cs" />
     <Compile Include="DishRepository\DishQuery.cs" />
@@ -169,6 +171,7 @@
     <Compile Include="InventoryRepository\InventoryQuery.cs" />
     <Compile Include="InventoryRepository\InventoryUpdate.cs" />
     <Compile Include="Models\Dish.cs" />
+    <Compile Include="Models\IMSdb.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
