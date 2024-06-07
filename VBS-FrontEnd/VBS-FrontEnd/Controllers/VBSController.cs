@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
+using VBS_FrontEnd.Models;
 
 namespace VBS_FrontEnd.Controllers
 {
@@ -10,8 +14,17 @@ namespace VBS_FrontEnd.Controllers
     {
         public ActionResult Home()
         {
-            
-            return View();
+            List<Dish> dishes = new List<Dish>();
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44313");
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = client.GetAsync("api/Dishes").Result;
+            string data = response.Content.ReadAsStringAsync().Result;
+            dishes = JsonConvert.DeserializeObject<List<Dish>>(data);
+
+            return View(dishes);
         }
 
         public ActionResult AddFood()

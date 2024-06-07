@@ -17,16 +17,8 @@ namespace VBS_BackEnd.Models
         public int SubgroupId { get; set; }
 
         // Constructor
-        public Dish(int id, string name, string photoUrl, string requirements, string quantityPer100GramAmount, string unitInStock, int groupId, int subgroupId)
+        public Dish()
         {
-            Id = id;
-            Name = name;
-            PhotoUrl = photoUrl;
-            Requirements = requirements;
-            QuantityPer100GramAmount = quantityPer100GramAmount;
-            UnitInStock = unitInStock;
-            GroupId = groupId;
-            SubgroupId = subgroupId;
         }
 
     }

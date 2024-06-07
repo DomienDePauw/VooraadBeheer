@@ -17,16 +17,9 @@ namespace VBS_BackEnd.Models
         public DateTime ExpiryDate { get; set; }
 
         // Constructor
-        public Inventory(int foodId, string name, string photoUrl, int groupId, int subgroupId, int quantity, DateTime stockDate, DateTime expiryDate)
+        public Inventory()
         {
-            FoodId = foodId;
-            Name = name;
-            PhotoUrl = photoUrl;
-            GroupId = groupId;
-            SubgroupId = subgroupId;
-            Quantity = quantity;
-            StockDate = stockDate;
-            ExpiryDate = expiryDate;
+           
         }
     }
 
