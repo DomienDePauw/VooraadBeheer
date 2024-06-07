@@ -14,15 +14,13 @@ namespace VBS_FrontEnd.Controllers
     {
         public ActionResult Home()
         {
-            List<Dish> dishes = new List<Dish>();
-
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44313");
+            client.BaseAddress = new Uri("https://localhost:7078");
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = client.GetAsync("api/Dishes").Result;
+            HttpResponseMessage response = client.GetAsync("/api/VBS/GetAllDishes").Result;
             string data = response.Content.ReadAsStringAsync().Result;
-            dishes = JsonConvert.DeserializeObject<List<Dish>>(data);
+            List<Dish> dishes = JsonConvert.DeserializeObject<List<Dish>>(data);
 
             return View(dishes);
         }

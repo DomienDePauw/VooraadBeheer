@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace VBS_FrontEnd.Models
+﻿namespace VBS_Api.Models
 {
     public class Dish
     {
