@@ -29,7 +29,6 @@ namespace VBS_Api.Controllers
             da.Fill(dt);
 
             List<Dish>dishes = new List<Dish>();
-            Response response = new Response();
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow dataRow in dt.Rows)
