@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [InventoryManagement]    Script Date: 8/06/2024 18:40:40 ******/
+/****** Object:  Database [InventoryManagement]    Script Date: 8/06/2024 19:47:18 ******/
 CREATE DATABASE [InventoryManagement]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,7 +82,7 @@ ALTER DATABASE [InventoryManagement] SET QUERY_STORE (OPERATION_MODE = READ_WRIT
 GO
 USE [InventoryManagement]
 GO
-/****** Object:  Table [dbo].[Dish]    Script Date: 8/06/2024 18:40:41 ******/
+/****** Object:  Table [dbo].[Dish]    Script Date: 8/06/2024 19:47:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -102,7 +102,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Groups]    Script Date: 8/06/2024 18:40:41 ******/
+/****** Object:  Table [dbo].[Groups]    Script Date: 8/06/2024 19:47:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -116,7 +116,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Inventory]    Script Date: 8/06/2024 18:40:41 ******/
+/****** Object:  Table [dbo].[Inventory]    Script Date: 8/06/2024 19:47:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -136,7 +136,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Subgroups]    Script Date: 8/06/2024 18:40:41 ******/
+/****** Object:  Table [dbo].[Subgroups]    Script Date: 8/06/2024 19:47:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -153,15 +153,15 @@ PRIMARY KEY CLUSTERED
 GO
 SET IDENTITY_INSERT [dbo].[Dish] ON 
 GO
-INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (2, N'Chicken Salad', N'url/to/chicken_salad.jpg', N'Chicken, Lettuce, Dressing', N'100, 50, 50', N'200g', 4, 7)
+INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (2, N'Chicken Salad', N'Chicken Salad.jpg', N'Chicken, Lettuce, Dressing', N'100, 50, 50', N'200g', 4, 7)
 GO
-INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (3, N'Fruit Salad', N'url/to/fruit_salad.jpg', N'Mixed Fruits', N'150', N'150g', 3, 6)
+INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (3, N'Fruit Salad', N'Fruit Salad.jpg', N'Mixed Fruits', N'150', N'150g', 3, 6)
 GO
-INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (4, N'Cheese Pizza', N'url/to/cheese_pizza.jpg', N'Cheese, Dough, Sauce', N'100, 100, 50', N'250g', 1, 2)
+INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (4, N'Cheese Pizza', N'Cheese Pizza.jpg', N'Cheese, Dough, Sauce', N'100, 100, 50', N'250g', 1, 2)
 GO
-INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (5, N'Veggie Stir-fry', N'url/to/veggie_stirfry.jpg', N'Mixed Veggies, Sauce', N'150, 50', N'200g', 2, 3)
+INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (5, N'Veggie Stir-fry', N'Veggie Stir-fry.jpg', N'Mixed Veggies, Sauce', N'150, 50', N'200g', 2, 3)
 GO
-INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (6, N'Beef Stew', N'url/to/beef_stew.jpg', N'Beef, Potatoes, Carrots', N'150, 100, 50', N'300g', 4, 8)
+INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (6, N'Beef Stew', N'Beef Stew.jpg', N'Beef, Potatoes, Carrots', N'150, 100, 50', N'300g', 4, 8)
 GO
 SET IDENTITY_INSERT [dbo].[Dish] OFF
 GO
@@ -226,6 +226,36 @@ GO
 INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (10, N'Wheat', 5)
 GO
 SET IDENTITY_INSERT [dbo].[Subgroups] OFF
+GO
+ALTER TABLE [dbo].[Dish]  WITH CHECK ADD  CONSTRAINT [FK_Dish_Dish] FOREIGN KEY([Id])
+REFERENCES [dbo].[Dish] ([Id])
+GO
+ALTER TABLE [dbo].[Dish] CHECK CONSTRAINT [FK_Dish_Dish]
+GO
+ALTER TABLE [dbo].[Dish]  WITH CHECK ADD  CONSTRAINT [FK_Dish_Groups] FOREIGN KEY([GroupId])
+REFERENCES [dbo].[Groups] ([Id])
+GO
+ALTER TABLE [dbo].[Dish] CHECK CONSTRAINT [FK_Dish_Groups]
+GO
+ALTER TABLE [dbo].[Dish]  WITH CHECK ADD  CONSTRAINT [FK_Dish_Subgroups] FOREIGN KEY([SubgroupId])
+REFERENCES [dbo].[Subgroups] ([Id])
+GO
+ALTER TABLE [dbo].[Dish] CHECK CONSTRAINT [FK_Dish_Subgroups]
+GO
+ALTER TABLE [dbo].[Inventory]  WITH CHECK ADD  CONSTRAINT [FK_Inventory_Groups] FOREIGN KEY([GroupId])
+REFERENCES [dbo].[Groups] ([Id])
+GO
+ALTER TABLE [dbo].[Inventory] CHECK CONSTRAINT [FK_Inventory_Groups]
+GO
+ALTER TABLE [dbo].[Inventory]  WITH CHECK ADD  CONSTRAINT [FK_Inventory_Subgroups] FOREIGN KEY([SubgroupId])
+REFERENCES [dbo].[Subgroups] ([Id])
+GO
+ALTER TABLE [dbo].[Inventory] CHECK CONSTRAINT [FK_Inventory_Subgroups]
+GO
+ALTER TABLE [dbo].[Subgroups]  WITH CHECK ADD  CONSTRAINT [FK_Subgroups_Groups] FOREIGN KEY([GroupId])
+REFERENCES [dbo].[Groups] ([Id])
+GO
+ALTER TABLE [dbo].[Subgroups] CHECK CONSTRAINT [FK_Subgroups_Groups]
 GO
 USE [master]
 GO

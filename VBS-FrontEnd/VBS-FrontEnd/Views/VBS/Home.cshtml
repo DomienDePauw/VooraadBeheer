@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+//*************** Deze is om te testen ah je weet zelf ***************
 <body>
     <table class="table table-striped">
         <thead>
@@ -24,8 +24,18 @@
                     <td>@dish.Id</td>
                     <td>@dish.Name</td>
                     <td>@dish.PhotoUrl</td>
-                    <td>@dish.Requirements</td>
-                    <td>@dish.QuantityPer100GramAmount</td>
+                    <td>
+                        @for (int i = 0; i < dish.Requirements.Count; i++)
+                        {
+                            <p>@dish.Requirements[i]</p>
+                        }
+                    </td>
+                    <td>
+                        @for (int i = 0; i < dish.QuantityPer100GramAmount.Count; i++)
+                        {
+                            <p>@dish.QuantityPer100GramAmount[i]</p>
+                        }
+                    </td>
                     <td>@dish.UnitInStock</td>
                     <td>@dish.GroupId</td>
                     <td>@dish.SubgroupId</td>
