@@ -33,13 +33,21 @@ namespace VBS_Api.Controllers
             {
                 foreach (DataRow dataRow in dt.Rows)
                 {
+                    string req = (string)dataRow["Requirements"];
+                    List<string> reqs = new List<string>();
+                    reqs = req.Trim().Split(',').ToList();
+
+                    List<int> quantities = new List<int>();
+                    string quantitiy = (string)dataRow["QuantityPer100GramAmount"];
+                    quantities = quantitiy.Trim().Split(",").ToList().Select(int.Parse).ToList();
+
                     Dish dish = new Dish()
                     {
                         Id = (int)dataRow["Id"],
                         Name = (string)dataRow["Name"],
                         PhotoUrl = (string)dataRow["PhotoUrl"],
-                        Requirements = (string)dataRow["Requirements"],
-                        QuantityPer100GramAmount = (string)dataRow["QuantityPer100GramAmount"],
+                        Requirements = reqs,
+                        QuantityPer100GramAmount = quantities,
                         UnitInStock = (string)dataRow["UnitInStock"],
                         GroupId = (int)dataRow["GroupId"],
                         SubgroupId = (int)dataRow["SubgroupId"]
