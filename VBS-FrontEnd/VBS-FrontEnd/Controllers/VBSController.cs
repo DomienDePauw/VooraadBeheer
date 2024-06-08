@@ -37,11 +37,25 @@ namespace VBS_FrontEnd.Controllers
 
             return View();
         }
-        public ActionResult Recipe()
+        public ActionResult Recipe(int Id)
         {
-            ViewBag.Message = "Specific recipe.";
-
-            return View();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7078");
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = client.GetAsync("/api/VBS/GetAllDishes").Result;
+            string data = response.Content.ReadAsStringAsync().Result;
+            List<Dish> dishes = JsonConvert.DeserializeObject<List<Dish>>(data);
+            List<Dish> primary = new List<Dish>();
+            primary.Add(dishes.FirstOrDefault(dish => dish.Id == Id));
+            for (int i = 0; i < dishes.Count; i++)
+            {
+                if (dishes[i].Id != Id)
+                {
+                    primary.Add(dishes[i]);
+                }
+            }
+            return View(primary);
         }
         public ActionResult Recipes()
         {

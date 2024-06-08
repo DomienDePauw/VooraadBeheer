@@ -49,17 +49,23 @@
             font-size: 0.9em;
             color: #888;
         }
+        a{
+            text-decoration-line:none;
+            text-decoration:none;
+        }
     </style>
 
     <div class="dish-container">
         @foreach (VBS_FrontEnd.Models.Dish dish in Model)
         {
             <div class="dish-card">
-                <img src="~/Images/@dish.PhotoUrl" alt="Gerecht Foto" class="dish-image">
-                <div class="dish-info">
-                    <div class="dish-name">Name: @dish.Name</div>
-                    <div class="dish-group">Gewicht: @dish.UnitInStock</div>
-                </div>
+                <a href="@Url.Action("Recipe", "VBS", new { Id = dish.Id })" class="dish-link">
+                    <img src="~/Images/@dish.PhotoUrl" alt="Gerecht Foto" class="dish-image">
+                    <div class="dish-info">
+                        <div class="dish-name">Name: @dish.Name</div>
+                        <div class="dish-group">Gewicht: @dish.UnitInStock</div>
+                    </div>
+                </a>
             </div>
         }
     </div>
