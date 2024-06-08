@@ -58,5 +58,21 @@ namespace VBS_Api.Controllers
             }
             return dishes;
         }
+        [HttpGet]
+        [Route("GetAllDishesByGroupId{Id}")]
+        public List<Dish> GetDishesByGroupId(int Id)
+        {
+            SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Dish", con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            //je krijgt van de front End een Id van een Dish.
+            //De front End wilt een lijst met alle dishes die dezelfde groupId en subgroupId hebben (inclusief de dish van het gegeven Id)
+            //Er zal een nieuwe model moeten gemaakt worden van Dish, zodat de front End niet groupId en subgroupId heeft, maar een group name en subgroup name
+
+
+            return dishes;
+        }
     }
 }
