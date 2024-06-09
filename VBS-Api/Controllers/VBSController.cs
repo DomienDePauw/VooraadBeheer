@@ -74,7 +74,7 @@ namespace VBS_Api.Controllers {
                     inventories.Add(inventory);
                 }
             }
-            dishes = Dish.GetAvailableDishesFromInventory(_configuration.GetConnectionString("VBSDbConnectionString").ToString(), inventories, dishes);
+            dishes = Dish.GetAvailableDishesFromInventory(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
             return dishes;
         }
 
