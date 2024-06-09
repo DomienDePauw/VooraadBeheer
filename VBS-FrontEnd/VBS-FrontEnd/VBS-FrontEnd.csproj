@@ -125,6 +125,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Dish.cs" />
+    <Compile Include="Models\DishWithNames.cs" />
     <Compile Include="Models\Groups.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\SubGroups.cs" />

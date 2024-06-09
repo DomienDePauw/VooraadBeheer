@@ -1,4 +1,4 @@
-﻿@model List<VBS_FrontEnd.Models.Dish>
+﻿@model List<VBS_FrontEnd.Models.DishWithNames>
 @{
     ViewBag.Title = "Recipe";
 }
@@ -49,19 +49,22 @@
     }
 
     .group {
-        width:50%
+        width: 50%
     }
+
     .requirement {
         width: 50%
     }
+
     .groups-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
         margin-top: 20px;
-        width:100%;
-        float:right;
+        width: 100%;
+        float: right;
     }
+
     .requirements-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -69,16 +72,19 @@
         margin-top: 20px;
         width: 100%;
     }
+
     .requirement-item {
         border: 1px solid #ddd;
         padding: 10px;
         height: 3rem;
     }
+
     .groups {
         border: 1px solid #ddd;
         padding: 10px;
         height: 3rem;
     }
+
     .grids {
         display: flex;
         justify-content: left;
@@ -98,8 +104,7 @@
                 <div class="requirement">
                     <h2>Requirements</h2>
                     <div class="requirements-grid">
-                        @for (int i = 0; i < Model[0].Requirements.Count; i++)
-                        {
+                        @for (int i = 0; i < Model[0].Requirements.Count; i++) {
                             <div class="requirement-item">
                                 @($"{Model[0].Requirements[i]}:    {Model[0].QuantityPer100GramAmount[i]}g")
                             </div>
