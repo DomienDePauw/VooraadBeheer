@@ -39,7 +39,7 @@ namespace VBS_FrontEnd.Controllers {
             client.BaseAddress = new Uri("https://localhost:7078");
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = client.GetAsync($"/api/VBS/GetAllDishesByGroupId/{Id}").Result;
+            HttpResponseMessage response = client.GetAsync($"/api/VBS/GetAllDishesByGroupId{Id}").Result;
             string data = response.Content.ReadAsStringAsync().Result;
             List<DishWithNames> dishes = JsonConvert.DeserializeObject<List<DishWithNames>>(data);
             List<DishWithNames> primary = new List<DishWithNames>();

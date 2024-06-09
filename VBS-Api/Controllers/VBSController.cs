@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Text.Json.Serialization;
 using VBS_Api.Models;
@@ -51,6 +52,29 @@ namespace VBS_Api.Controllers {
                     dishes.Add(dish);
                 }
             }
+
+            da = new SqlDataAdapter("SELECT * FROM Inventory", con);
+            dt = new DataTable();
+            da.Fill(dt);
+
+            List<Inventory> inventories = new List<Inventory>();
+            if (dt.Rows.Count > 0) {
+                foreach (DataRow dataRow in dt.Rows) {
+                    Inventory inventory = new Inventory() {
+                        FoodId = (int)dataRow["FoodId"],
+                        Name = (string)dataRow["Name"],
+                        PhotoUrl = (string)dataRow["PhotoUrl"],
+                        GroupId = (int)dataRow["GroupId"],
+                        SubgroupId = (int)dataRow["SubgroupId"],
+                        Quantity = (int)dataRow["Quantity"],
+                        StockDate = (DateTime)dataRow["StockDate"],
+                        ExpiryDate = (DateTime)dataRow["ExpiryDate"]
+                    };
+
+                    inventories.Add(inventory);
+                }
+            }
+            dishes = Dish.GetAvailableDishesFromInventory(_configuration.GetConnectionString("VBSDbConnectionString").ToString(), inventories, dishes);
             return dishes;
         }
 
