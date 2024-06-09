@@ -7,7 +7,7 @@ namespace VBS_Api.Models.Dish_Repo {
 
     public class DishQuery {
 
-        public List<Dish> GetAll(string connectionString) {
+        public static List<Dish> GetAll(string connectionString) {
             string query = "SELECT * FROM Dish";
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(query, connection);
