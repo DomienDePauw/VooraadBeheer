@@ -20,7 +20,63 @@ namespace VBS_Api.Controllers {
         }
 
         [HttpGet]
-        [Route("GetAllDishes")]
+        [Route("GetAllDishes{SubgroupId}")]
+
+        public List<Dish> GetAllDishesOrBySubgroupId(int? subgroupId)
+        {
+            SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
+            List<Dish> dishes = new List<Dish>();
+
+            if (!subgroupId.HasValue || subgroupId.Value == 0)
+            {
+                //als subgroupId niet bestaat of 0 is, dan krijg je alle dishes
+                dishes = GetDishes();
+            }
+            else
+            {
+                GetDishesBySubgroupId(subgroupId.Value, dishes);
+            }
+
+            return dishes;
+        }
+
+        private void GetDishesBySubgroupId(int subgroupId, List<Dish> dishes)
+        {
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString")))
+            {
+                con.Open();
+                string sqlQuery = @"
+                SELECT d.Id, d.Name, d.PhotoUrl
+                FROM Dish AS d
+                JOIN Subgroups AS sg ON d.SubgroupId = sg.Id
+                WHERE sg.Id = @SubgroupId";
+
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
+                {
+                    cmd.Parameters.AddWithValue("@SubgroupId", subgroupId);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        foreach (DataRow dataRow in dt.Rows)
+                        {
+                            Dish dish = new Dish()
+                            {
+                                Id = (int)dataRow["Id"],
+                                Name = (string)dataRow["Name"],
+                                PhotoUrl = (string)dataRow["PhotoUrl"]
+                            };
+
+                            dishes.Add(dish);
+                        }
+                    }
+                }
+            }
+        }
+    
+
+
         public List<Dish> GetDishes() {
             SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Dish", con);
