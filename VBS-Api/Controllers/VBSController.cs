@@ -21,24 +21,7 @@ namespace VBS_Api.Controllers {
         }
 
         [HttpGet]
-        [Route("GetAllDishes{SubgroupId}")]
-        public List<Dish> GetAllDishesOrBySubgroupId(int? subgroupId) {
-            SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
-            List<Dish> dishes = new List<Dish>();
-
-            if (!subgroupId.HasValue || subgroupId.Value == 0) {
-                //als subgroupId niet bestaat of 0 is, dan krijg je alle dishes
-                dishes = DishQuery.GetAll(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
-            }
-            else {
-                //GetDishesBySubgroupId(subgroupId.Value, dishes);
-                List<Dish> allDishes = DishQuery.GetAll(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
-                dishes = allDishes.FindAll(d => d.SubgroupId == subgroupId.Value);
-            }
-
-            return dishes;
-        }
-
+        [Route("GetAllDishes")]
         public List<Dish> GetDishes() {
             SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Dish", con);
@@ -138,6 +121,25 @@ namespace VBS_Api.Controllers {
                 };
                 dishes.Add(newDish);
             }
+            return dishes;
+        }
+
+        [HttpGet]
+        [Route("GetAllDishesBySubgroupId{Id}")]
+        public List<Dish> GetAllDishesBySubgroupId(int? Id) {
+            SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
+            List<Dish> dishes = new List<Dish>();
+
+            if (!Id.HasValue || Id.Value == 0) {
+                //als subgroupId niet bestaat of 0 is, dan krijg je alle dishes
+                dishes = DishQuery.GetAll(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
+            }
+            else {
+                //GetDishesBySubgroupId(subgroupId.Value, dishes);
+                List<Dish> allDishes = DishQuery.GetAll(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
+                dishes = allDishes.FindAll(d => d.SubgroupId == Id.Value);
+            }
+
             return dishes;
         }
     }
