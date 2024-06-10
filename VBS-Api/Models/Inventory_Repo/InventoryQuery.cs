@@ -48,5 +48,10 @@ namespace VBS_Api.Models.Inventory_Repo {
             List<Inventory> allInventories = GetAll(connectionString);
             return allInventories.OrderBy(inventory => inventory.ExpiryDate).ToList();
         }
+
+        public static List<Inventory> GetTop5ExpiryDateAsc(string connectionString) {
+            List<Inventory> allInventories = GetAll(connectionString);
+            return allInventories.OrderBy(inventory => inventory.ExpiryDate).Take(5).ToList();
+        }
     }
 }

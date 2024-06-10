@@ -23,6 +23,11 @@ namespace VBS_Api.Models {
 
         #region Methods
 
+        /// <summary>
+        /// Method to get all available dishes from all ingredients in inventory
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         public static List<Dish> GetAvailableDishesFromInventory(string connectionString) {
             // Helper properties
             List<Dish> allDishes = DishQuery.GetAll(connectionString);
@@ -71,8 +76,8 @@ namespace VBS_Api.Models {
                 else availableDishes.Add(dish);
             }
             return availableDishes;
-
-            #endregion Methods
         }
+
+        #endregion Methods
     }
 }
