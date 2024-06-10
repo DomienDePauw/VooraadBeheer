@@ -52,12 +52,17 @@ namespace VBS_FrontEnd.Controllers {
             return View(primary);
         }
 
-        public ActionResult Recipes() {
+        public ActionResult Recipes(int? subId) {
+            if (subId == null)
+            {
+                subId = 0;
+            }
+
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7078");
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = client.GetAsync("/api/VBS/GetAllDishes").Result;
+            HttpResponseMessage response = client.GetAsync($"/api/VBS/GetAllDishes{subId}").Result;
             string data = response.Content.ReadAsStringAsync().Result;
             List<Dish> dishes = JsonConvert.DeserializeObject<List<Dish>>(data);
 
