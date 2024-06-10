@@ -7,6 +7,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Text.Json.Serialization;
 using VBS_Api.Models;
+using VBS_Api.Models.Dish_Repo;
 
 namespace VBS_Api.Controllers {
 
@@ -21,61 +22,22 @@ namespace VBS_Api.Controllers {
 
         [HttpGet]
         [Route("GetAllDishes{SubgroupId}")]
-
-        public List<Dish> GetAllDishesOrBySubgroupId(int? subgroupId)
-        {
+        public List<Dish> GetAllDishesOrBySubgroupId(int? subgroupId) {
             SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
             List<Dish> dishes = new List<Dish>();
 
-            if (!subgroupId.HasValue || subgroupId.Value == 0)
-            {
+            if (!subgroupId.HasValue || subgroupId.Value == 0) {
                 //als subgroupId niet bestaat of 0 is, dan krijg je alle dishes
-                dishes = GetDishes();
+                dishes = DishQuery.GetAll(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
             }
-            else
-            {
-                GetDishesBySubgroupId(subgroupId.Value, dishes);
+            else {
+                //GetDishesBySubgroupId(subgroupId.Value, dishes);
+                List<Dish> allDishes = DishQuery.GetAll(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
+                dishes = allDishes.FindAll(d => d.SubgroupId == subgroupId.Value);
             }
 
             return dishes;
         }
-
-        private void GetDishesBySubgroupId(int subgroupId, List<Dish> dishes)
-        {
-            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString")))
-            {
-                con.Open();
-                string sqlQuery = @"
-                SELECT d.Id, d.Name, d.PhotoUrl
-                FROM Dish AS d
-                JOIN Subgroups AS sg ON d.SubgroupId = sg.Id
-                WHERE sg.Id = @SubgroupId";
-
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
-                {
-                    cmd.Parameters.AddWithValue("@SubgroupId", subgroupId);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-
-                        foreach (DataRow dataRow in dt.Rows)
-                        {
-                            Dish dish = new Dish()
-                            {
-                                Id = (int)dataRow["Id"],
-                                Name = (string)dataRow["Name"],
-                                PhotoUrl = (string)dataRow["PhotoUrl"]
-                            };
-
-                            dishes.Add(dish);
-                        }
-                    }
-                }
-            }
-        }
-    
-
 
         public List<Dish> GetDishes() {
             SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
