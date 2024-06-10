@@ -28,5 +28,15 @@ namespace VBS_Api.Models.Inventory_Repo {
             }
             return inventories;
         }
+
+        public static List<Inventory> GetAllStockDateDesc(string connectionString) {
+            List<Inventory> allInventories = GetAll(connectionString);
+            return allInventories.OrderByDescending(inventory => inventory.StockDate).ToList();
+        }
+
+        public static List<Inventory> GetallStockDateAsc(string connectionString) {
+            List<Inventory> allInventories = GetAll(connectionString);
+            return allInventories.OrderBy(inventory => inventory.StockDate).ToList();
+        }
     }
 }
