@@ -99,8 +99,10 @@ namespace VBS_Api.Controllers {
         [Route("GetInventory")]
         public List<InventoryNames> GetInventory()
         {
-            List<InventoryNames>ttt = new List<InventoryNames>();
-            return ttt;
+            List<InventoryNames> inventory = new List<InventoryNames>();
+            inventory = InventoryQuery.GetInventoryNames(_con);
+
+            return inventory;
         }
     }
 }

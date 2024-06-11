@@ -50,22 +50,22 @@
                 <tr>
                     <th>Photo</th>
                     <th>Name</th>
-                    <th>Group ID</th>
-                    <th>Subgroup ID</th>
+                    <th>Group Name</th>
+                    <th>Subgroup Name</th>
                     <th>Quantity</th>
                     <th>Stock Date</th>
                     <th>Expiry Date</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (VBS_FrontEnd.Models.InventoryNames item in Model)
                 {
                     <tr>
                         <td><img src="@item.PhotoUrl" alt="@item.Name" /></td>
                         <td>@item.Name</td>
-                        <td>@item.GroupId</td>
-                        <td>@item.SubgroupId</td>
-                        <td>@item.Quantity</td>
+                        <td>@item.GroupName</td>
+                        <td>@item.SubgroupName</td>
+                        <td>@(item.Quantity + "g")</td>
                         <td>@item.StockDate.ToShortDateString()</td>
                         <td>@item.ExpiryDate.ToShortDateString()</td>
                     </tr>
