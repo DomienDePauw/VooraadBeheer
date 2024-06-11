@@ -103,18 +103,18 @@
                         {
                             if (item.ExpiryDate < DateTime.Now)
                             {
-                                <td style="background-color: #FF6B6B; color: #FFFFFF; text-align:center; font-weight:bold">@item.ExpiryDate.ToShortDateString()</td>
+                                <td style="background-color: #FF6B6B; color: #FFFFFF; text-align:center; font-weight:bold">Expired</td>
                             }
                             else
                             {
-                                <td style="background-color: #FFEB3B; color: #000000; text-align: center; font-weight: bold">@item.ExpiryDate.ToShortDateString()</td>
+                                <td style="background-color: #FFEB3B; color: #000000; text-align: center; font-weight: bold">@(item.ExpiryDate.Day-DateTime.Now.Day) Day(s) left</td>
                             }
                         }
                         @if (!VBS_FrontEnd.Controllers.VBSController.DateChecker(DateTime.Now, item.ExpiryDate))
                         {
                             if (item.ExpiryDate < DateTime.Now)
                             {
-                                <td style="background-color: #FF6B6B; color: #FFFFFF; text-align: center; font-weight: bold">@item.ExpiryDate.ToShortDateString()</td>
+                                <td style="background-color: #FF6B6B; color: #FFFFFF; text-align: center; font-weight: bold">Expired</td>
                             }
                             else
                             {

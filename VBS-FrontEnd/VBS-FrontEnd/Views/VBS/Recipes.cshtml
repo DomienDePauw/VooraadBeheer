@@ -91,6 +91,8 @@
         }
     </style>
 
+@if (Model!=null)
+{
     <div class="dish-container">
         @foreach (VBS_FrontEnd.Models.Dish dish in Model)
         {
@@ -105,3 +107,8 @@
             </div>
         }
     </div>
+}
+@if (Model==null)
+{
+    <h1>piemeltjes</h1>
+}
