@@ -26,12 +26,12 @@ namespace VBS_Api.Models {
         /// <summary>
         /// Method to get all available dishes from all ingredients in inventory
         /// </summary>
-        /// <param name="connectionString"></param>
+        /// <param name="con"></param>
         /// <returns></returns>
-        public static List<Dish> GetAvailableDishesFromInventory(string connectionString) {
+        public static List<Dish> GetAvailableDishesFromInventory(SqlConnection con) {
             // Helper properties
-            List<Dish> allDishes = DishQuery.GetAll(connectionString);
-            List<Inventory> allInventories = InventoryQuery.GetAll(connectionString);
+            List<Dish> allDishes = DishQuery.GetAll(con);
+            List<Inventory> allInventories = InventoryQuery.GetAll(con);
             List<Dish> availableDishes = new List<Dish>();
 
             foreach (Dish dish in allDishes) {

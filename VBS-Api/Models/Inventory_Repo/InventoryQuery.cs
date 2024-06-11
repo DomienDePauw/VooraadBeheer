@@ -5,10 +5,9 @@ namespace VBS_Api.Models.Inventory_Repo {
 
     public class InventoryQuery {
 
-        public static List<Inventory> GetAll(string connectionString) {
+        public static List<Inventory> GetAll(SqlConnection con) {
             string query = "SELECT * FROM Inventory";
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand command = new SqlCommand(query, connection);
+            SqlCommand command = new SqlCommand(query, con);
             SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
@@ -29,28 +28,28 @@ namespace VBS_Api.Models.Inventory_Repo {
             return inventories;
         }
 
-        public static List<Inventory> GetAllStockDateDesc(string connectionString) {
-            List<Inventory> allInventories = GetAll(connectionString);
+        public static List<Inventory> GetAllStockDateDesc(SqlConnection con) {
+            List<Inventory> allInventories = GetAll(con);
             return allInventories.OrderByDescending(inventory => inventory.StockDate).ToList();
         }
 
-        public static List<Inventory> GetallStockDateAsc(string connectionString) {
-            List<Inventory> allInventories = GetAll(connectionString);
+        public static List<Inventory> GetallStockDateAsc(SqlConnection con) {
+            List<Inventory> allInventories = GetAll(con);
             return allInventories.OrderBy(inventory => inventory.StockDate).ToList();
         }
 
-        public static List<Inventory> GetallExpiryDateDesc(string connectionString) {
-            List<Inventory> allInventories = GetAll(connectionString);
+        public static List<Inventory> GetallExpiryDateDesc(SqlConnection con) {
+            List<Inventory> allInventories = GetAll(con);
             return allInventories.OrderByDescending(inventory => inventory.ExpiryDate).ToList();
         }
 
-        public static List<Inventory> GetallExpiryDateAsc(string connectionString) {
-            List<Inventory> allInventories = GetAll(connectionString);
+        public static List<Inventory> GetallExpiryDateAsc(SqlConnection con) {
+            List<Inventory> allInventories = GetAll(con);
             return allInventories.OrderBy(inventory => inventory.ExpiryDate).ToList();
         }
 
-        public static List<Inventory> GetTop5ExpiryDateAsc(string connectionString) {
-            List<Inventory> allInventories = GetAll(connectionString);
+        public static List<Inventory> GetTop5ExpiryDateAsc(SqlConnection con) {
+            List<Inventory> allInventories = GetAll(con);
             return allInventories.OrderBy(inventory => inventory.ExpiryDate).Take(5).ToList();
         }
     }

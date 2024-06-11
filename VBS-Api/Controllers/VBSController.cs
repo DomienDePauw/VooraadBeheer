@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Text.Json.Serialization;
 using VBS_Api.Models;
 using VBS_Api.Models.Dish_Repo;
+using VBS_Api.Models.Inventory_Repo;
 
 namespace VBS_Api.Controllers {
 
@@ -24,58 +25,10 @@ namespace VBS_Api.Controllers {
         [Route("GetAllDishes")]
         public List<Dish> GetDishes() {
             SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Dish", con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
+            
             List<Dish> dishes = new List<Dish>();
-            if (dt.Rows.Count > 0) {
-                foreach (DataRow dataRow in dt.Rows) {
-                    string req = (string)dataRow["Requirements"];
-                    List<string> reqs = new List<string>();
-                    reqs = req.Trim().Split(',').ToList();
+            dishes = Dish.GetAvailableDishesFromInventory(con);
 
-                    List<int> quantities = new List<int>();
-                    string quantitiy = (string)dataRow["QuantityPer100GramAmount"];
-                    quantities = quantitiy.Trim().Split(",").ToList().Select(int.Parse).ToList();
-
-                    Dish dish = new Dish() {
-                        Id = (int)dataRow["Id"],
-                        Name = (string)dataRow["Name"],
-                        PhotoUrl = (string)dataRow["PhotoUrl"],
-                        Requirements = reqs,
-                        QuantityPer100GramAmount = quantities,
-                        UnitInStock = (string)dataRow["UnitInStock"],
-                        GroupId = (int)dataRow["GroupId"],
-                        SubgroupId = (int)dataRow["SubgroupId"]
-                    };
-
-                    dishes.Add(dish);
-                }
-            }
-
-            da = new SqlDataAdapter("SELECT * FROM Inventory", con);
-            dt = new DataTable();
-            da.Fill(dt);
-
-            List<Inventory> inventories = new List<Inventory>();
-            if (dt.Rows.Count > 0) {
-                foreach (DataRow dataRow in dt.Rows) {
-                    Inventory inventory = new Inventory() {
-                        FoodId = (int)dataRow["FoodId"],
-                        Name = (string)dataRow["Name"],
-                        PhotoUrl = (string)dataRow["PhotoUrl"],
-                        GroupId = (int)dataRow["GroupId"],
-                        SubgroupId = (int)dataRow["SubgroupId"],
-                        Quantity = (int)dataRow["Quantity"],
-                        StockDate = (DateTime)dataRow["StockDate"],
-                        ExpiryDate = (DateTime)dataRow["ExpiryDate"]
-                    };
-
-                    inventories.Add(inventory);
-                }
-            }
-            dishes = Dish.GetAvailableDishesFromInventory(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
             return dishes;
         }
 
@@ -132,15 +85,26 @@ namespace VBS_Api.Controllers {
 
             if (!Id.HasValue || Id.Value == 0) {
                 //als subgroupId niet bestaat of 0 is, dan krijg je alle dishes
-                dishes = DishQuery.GetAll(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
+                dishes = DishQuery.GetAll(con);
             }
             else {
                 //GetDishesBySubgroupId(subgroupId.Value, dishes);
-                List<Dish> allDishes = DishQuery.GetAll(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
+                List<Dish> allDishes = DishQuery.GetAll(con);
                 dishes = allDishes.FindAll(d => d.SubgroupId == Id.Value);
             }
 
             return dishes;
+        }
+        [HttpGet]
+        [Route("GetInventory")]
+        public List<Inventory> GetInventory()
+        {
+            SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
+            List<Inventory> inventory = new List<Inventory>();
+
+            inventory = InventoryQuery.GetAll(con);
+
+            return inventory;
         }
     }
 }

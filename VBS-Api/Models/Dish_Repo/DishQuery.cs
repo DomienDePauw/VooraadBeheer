@@ -1,14 +1,15 @@
-﻿using System.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Data.SqlClient;
+using VBS_Api.Controllers;
 
 namespace VBS_Api.Models.Dish_Repo {
 
     public class DishQuery {
 
-        public static List<Dish> GetAll(string connectionString) {
-            string query = "SELECT * FROM Dish";
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand command = new SqlCommand(query, connection);
+        public static List<Dish> GetAll(SqlConnection con) {
+            string query = "SELECT * FROM Dish";          
+            SqlCommand command = new SqlCommand(query, con);
             SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
