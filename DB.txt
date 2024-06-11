@@ -1,0 +1,263 @@
+USE [master]
+GO
+/****** Object:  Database [InventoryManagement]    Script Date: 11/06/2024 6:11:55 ******/
+CREATE DATABASE [InventoryManagement]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'InventoryManagement', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\InventoryManagement.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'InventoryManagement_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\InventoryManagement_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [InventoryManagement] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [InventoryManagement].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [InventoryManagement] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [InventoryManagement] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [InventoryManagement] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [InventoryManagement] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [InventoryManagement] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [InventoryManagement] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [InventoryManagement] SET  MULTI_USER 
+GO
+ALTER DATABASE [InventoryManagement] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [InventoryManagement] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [InventoryManagement] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [InventoryManagement] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [InventoryManagement] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [InventoryManagement] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [InventoryManagement] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [InventoryManagement] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [InventoryManagement]
+GO
+/****** Object:  Table [dbo].[Dish]    Script Date: 11/06/2024 6:11:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dish](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](255) NOT NULL,
+	[PhotoUrl] [varchar](255) NULL,
+	[Requirements] [varchar](255) NULL,
+	[QuantityPer100GramAmount] [varchar](255) NULL,
+	[UnitInStock] [varchar](50) NULL,
+	[GroupId] [int] NULL,
+	[SubgroupId] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Groups]    Script Date: 11/06/2024 6:11:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Groups](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Inventory]    Script Date: 11/06/2024 6:11:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Inventory](
+	[FoodId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](255) NOT NULL,
+	[PhotoUrl] [varchar](255) NULL,
+	[GroupId] [int] NULL,
+	[SubgroupId] [int] NULL,
+	[Quantity] [int] NULL,
+	[StockDate] [date] NULL,
+	[ExpiryDate] [date] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[FoodId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Subgroups]    Script Date: 11/06/2024 6:11:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Subgroups](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](255) NOT NULL,
+	[GroupId] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Dish] ON 
+GO
+INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (2, N'Chicken Salad', N'Chicken Salad.jpg', N'Chicken, Lettuce, Dressing', N'100, 50, 50', N'200g', 4, 7)
+GO
+INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (3, N'Fruit Salad', N'Fruit Salad.jpg', N'Mixed Fruits', N'150', N'150g', 3, 6)
+GO
+INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (4, N'Cheese Pizza', N'Cheese Pizza.jpg', N'Cheese, Dough, Sauce', N'100, 100, 50', N'250g', 1, 2)
+GO
+INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (5, N'Veggie Stir-fry', N'Veggie Stir-fry.jpg', N'Mixed Veggies, Sauce', N'150, 50', N'200g', 2, 3)
+GO
+INSERT [dbo].[Dish] ([Id], [Name], [PhotoUrl], [Requirements], [QuantityPer100GramAmount], [UnitInStock], [GroupId], [SubgroupId]) VALUES (6, N'Beef Stew', N'Beef Stew.jpg', N'Beef, Potatoes, Carrots', N'150, 100, 50', N'300g', 4, 8)
+GO
+SET IDENTITY_INSERT [dbo].[Dish] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Groups] ON 
+GO
+INSERT [dbo].[Groups] ([Id], [Name]) VALUES (1, N'Dairy')
+GO
+INSERT [dbo].[Groups] ([Id], [Name]) VALUES (2, N'Vegetables')
+GO
+INSERT [dbo].[Groups] ([Id], [Name]) VALUES (3, N'Fruits')
+GO
+INSERT [dbo].[Groups] ([Id], [Name]) VALUES (4, N'Meats')
+GO
+INSERT [dbo].[Groups] ([Id], [Name]) VALUES (5, N'Grains')
+GO
+SET IDENTITY_INSERT [dbo].[Groups] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Inventory] ON 
+GO
+INSERT [dbo].[Inventory] ([FoodId], [Name], [PhotoUrl], [GroupId], [SubgroupId], [Quantity], [StockDate], [ExpiryDate]) VALUES (2, N'Whole Milk', N'Whole Milk Stock.jpg', 1, 1, 2000, CAST(N'2024-06-01' AS Date), CAST(N'2024-06-15' AS Date))
+GO
+INSERT [dbo].[Inventory] ([FoodId], [Name], [PhotoUrl], [GroupId], [SubgroupId], [Quantity], [StockDate], [ExpiryDate]) VALUES (3, N'Cheddar Cheese', N'Cheddar Cheese Stock.jpg', 1, 2, 200, CAST(N'2024-05-25' AS Date), CAST(N'2024-07-01' AS Date))
+GO
+INSERT [dbo].[Inventory] ([FoodId], [Name], [PhotoUrl], [GroupId], [SubgroupId], [Quantity], [StockDate], [ExpiryDate]) VALUES (4, N'Spinach', N'Spinach Stock.jpg', 2, 3, 200, CAST(N'2024-06-02' AS Date), CAST(N'2024-06-12' AS Date))
+GO
+INSERT [dbo].[Inventory] ([FoodId], [Name], [PhotoUrl], [GroupId], [SubgroupId], [Quantity], [StockDate], [ExpiryDate]) VALUES (5, N'Carrots', N'Carrots Stock.jpg', 2, 4, 1000, CAST(N'2024-05-30' AS Date), CAST(N'2024-06-20' AS Date))
+GO
+INSERT [dbo].[Inventory] ([FoodId], [Name], [PhotoUrl], [GroupId], [SubgroupId], [Quantity], [StockDate], [ExpiryDate]) VALUES (6, N'Oranges', N'Oranges Stock.jpg', 3, 5, 300, CAST(N'2024-06-01' AS Date), CAST(N'2024-06-18' AS Date))
+GO
+INSERT [dbo].[Inventory] ([FoodId], [Name], [PhotoUrl], [GroupId], [SubgroupId], [Quantity], [StockDate], [ExpiryDate]) VALUES (7, N'Strawberries', N'Strawberries Stock.jpg', 3, 6, 300, CAST(N'2024-06-01' AS Date), CAST(N'2024-06-10' AS Date))
+GO
+INSERT [dbo].[Inventory] ([FoodId], [Name], [PhotoUrl], [GroupId], [SubgroupId], [Quantity], [StockDate], [ExpiryDate]) VALUES (8, N'Chicken Breast', N'Chicken Breast Stock.jpg', 4, 7, 400, CAST(N'2024-06-03' AS Date), CAST(N'2024-06-12' AS Date))
+GO
+INSERT [dbo].[Inventory] ([FoodId], [Name], [PhotoUrl], [GroupId], [SubgroupId], [Quantity], [StockDate], [ExpiryDate]) VALUES (9, N'Beef', N'Beef Stock.jpg', 4, 8, 400, CAST(N'2024-05-28' AS Date), CAST(N'2024-06-15' AS Date))
+GO
+INSERT [dbo].[Inventory] ([FoodId], [Name], [PhotoUrl], [GroupId], [SubgroupId], [Quantity], [StockDate], [ExpiryDate]) VALUES (10, N'White Rice', N'White Rice Stock.jpg', 5, 9, 300, CAST(N'2024-06-01' AS Date), CAST(N'2025-06-01' AS Date))
+GO
+INSERT [dbo].[Inventory] ([FoodId], [Name], [PhotoUrl], [GroupId], [SubgroupId], [Quantity], [StockDate], [ExpiryDate]) VALUES (11, N'Wheat Flour', N'Wheat Flour Stock.jpg', 5, 10, 1000, CAST(N'2024-06-01' AS Date), CAST(N'2025-06-01' AS Date))
+GO
+SET IDENTITY_INSERT [dbo].[Inventory] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Subgroups] ON 
+GO
+INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (1, N'Milk', 1)
+GO
+INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (2, N'Cheese', 1)
+GO
+INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (3, N'Leafy Greens', 2)
+GO
+INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (4, N'Root Veggies', 2)
+GO
+INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (5, N'Citrus', 3)
+GO
+INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (6, N'Berries', 3)
+GO
+INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (7, N'Poultry', 4)
+GO
+INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (8, N'Red Meat', 4)
+GO
+INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (9, N'Rice', 5)
+GO
+INSERT [dbo].[Subgroups] ([Id], [Name], [GroupId]) VALUES (10, N'Wheat', 5)
+GO
+SET IDENTITY_INSERT [dbo].[Subgroups] OFF
+GO
+ALTER TABLE [dbo].[Dish]  WITH CHECK ADD  CONSTRAINT [FK_Dish_Dish] FOREIGN KEY([Id])
+REFERENCES [dbo].[Dish] ([Id])
+GO
+ALTER TABLE [dbo].[Dish] CHECK CONSTRAINT [FK_Dish_Dish]
+GO
+ALTER TABLE [dbo].[Dish]  WITH CHECK ADD  CONSTRAINT [FK_Dish_Groups] FOREIGN KEY([GroupId])
+REFERENCES [dbo].[Groups] ([Id])
+GO
+ALTER TABLE [dbo].[Dish] CHECK CONSTRAINT [FK_Dish_Groups]
+GO
+ALTER TABLE [dbo].[Dish]  WITH CHECK ADD  CONSTRAINT [FK_Dish_Subgroups] FOREIGN KEY([SubgroupId])
+REFERENCES [dbo].[Subgroups] ([Id])
+GO
+ALTER TABLE [dbo].[Dish] CHECK CONSTRAINT [FK_Dish_Subgroups]
+GO
+ALTER TABLE [dbo].[Inventory]  WITH CHECK ADD  CONSTRAINT [FK_Inventory_Groups] FOREIGN KEY([GroupId])
+REFERENCES [dbo].[Groups] ([Id])
+GO
+ALTER TABLE [dbo].[Inventory] CHECK CONSTRAINT [FK_Inventory_Groups]
+GO
+ALTER TABLE [dbo].[Inventory]  WITH CHECK ADD  CONSTRAINT [FK_Inventory_Subgroups] FOREIGN KEY([SubgroupId])
+REFERENCES [dbo].[Subgroups] ([Id])
+GO
+ALTER TABLE [dbo].[Inventory] CHECK CONSTRAINT [FK_Inventory_Subgroups]
+GO
+ALTER TABLE [dbo].[Subgroups]  WITH CHECK ADD  CONSTRAINT [FK_Subgroups_Groups] FOREIGN KEY([GroupId])
+REFERENCES [dbo].[Groups] ([Id])
+GO
+ALTER TABLE [dbo].[Subgroups] CHECK CONSTRAINT [FK_Subgroups_Groups]
+GO
+USE [master]
+GO
+ALTER DATABASE [InventoryManagement] SET  READ_WRITE 
+GO
