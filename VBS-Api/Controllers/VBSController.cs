@@ -16,18 +16,20 @@ namespace VBS_Api.Controllers {
     [ApiController]
     public class VBSController : ControllerBase {
         public readonly IConfiguration _configuration;
+        public readonly SqlConnection _con;
 
-        public VBSController(IConfiguration configuration) {
+        public VBSController(IConfiguration configuration, SqlConnection con)
+        {
             _configuration = configuration;
+            _con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
         }
 
         [HttpGet]
         [Route("GetAllDishes")]
         public List<Dish> GetDishes() {
-            SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
             
             List<Dish> dishes = new List<Dish>();
-            dishes = Dish.GetAvailableDishesFromInventory(con);
+            dishes = Dish.GetAvailableDishesFromInventory(_con);
 
             return dishes;
         }
@@ -35,9 +37,8 @@ namespace VBS_Api.Controllers {
         [HttpGet]
         [Route("GetAllDishesByGroupId{Id}")]
         public List<DishWithNames> GetDishesByGroupId(int Id) {
-            SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
             string q1 = "SELECT GroupId, SubgroupId FROM Dish WHERE Id = @Id ";
-            SqlCommand cmd = new SqlCommand(q1, con);
+            SqlCommand cmd = new SqlCommand(q1, _con);
             cmd.Parameters.AddWithValue("@Id", Id);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -54,7 +55,7 @@ namespace VBS_Api.Controllers {
                 };
             }
             string q2 = "SELECT d.Id, d.Name, d.PhotoUrl, d.Requirements, d.QuantityPer100GramAmount, d.UnitInStock, g.Name AS GroupName, sg.Name AS SubgroupName FROM Dish d JOIN Groups g ON d.GroupId=g.Id JOIN Subgroups sg ON d.SubgroupId = sg.Id WHERE d.GroupId = @GroupId AND SubgroupId = @SubgroupId";
-            SqlCommand cmd2 = new SqlCommand(q2, con);
+            SqlCommand cmd2 = new SqlCommand(q2, _con);
             cmd2.Parameters.AddWithValue("@groupId", dishDetails.GroupId);
             cmd2.Parameters.AddWithValue("@subgroupId", dishDetails.SubgroupId);
             SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
@@ -80,16 +81,15 @@ namespace VBS_Api.Controllers {
         [HttpGet]
         [Route("GetAllDishesBySubgroupId{Id}")]
         public List<Dish> GetAllDishesBySubgroupId(int? Id) {
-            SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
             List<Dish> dishes = new List<Dish>();
 
             if (!Id.HasValue || Id.Value == 0) {
                 //als subgroupId niet bestaat of 0 is, dan krijg je alle dishes
-                dishes = DishQuery.GetAll(con);
+                dishes = DishQuery.GetAll(_con);
             }
             else {
                 //GetDishesBySubgroupId(subgroupId.Value, dishes);
-                List<Dish> allDishes = DishQuery.GetAll(con);
+                List<Dish> allDishes = DishQuery.GetAll(_con);
                 dishes = allDishes.FindAll(d => d.SubgroupId == Id.Value);
             }
 
@@ -99,10 +99,9 @@ namespace VBS_Api.Controllers {
         [Route("GetInventory")]
         public List<Inventory> GetInventory()
         {
-            SqlConnection con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
             List<Inventory> inventory = new List<Inventory>();
 
-            inventory = InventoryQuery.GetAll(con);
+            inventory = InventoryQuery.GetAll(_con);
 
             return inventory;
         }
