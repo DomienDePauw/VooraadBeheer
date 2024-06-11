@@ -1,0 +1,46 @@
+﻿@model List<VBS_FrontEnd.Models.Dish>
+@{
+    ViewBag.Title = "Home Page";
+}
+//*************** Deze is om te testen ah je weet zelf ***************
+<body>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>PhotoUrl</th>
+                <th>Req</th>
+                <th>Quantity</th>
+                <th>UnitInStock</th>
+                <th>GroupId</th>
+                <th>SubGroupId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (VBS_FrontEnd.Models.Dish dish in Model)
+            {
+                <tr>
+                    <td>@dish.Id</td>
+                    <td>@dish.Name</td>
+                    <td>@dish.PhotoUrl</td>
+                    <td>
+                        @for (int i = 0; i < dish.Requirements.Count; i++)
+                        {
+                            <p>@dish.Requirements[i]</p>
+                        }
+                    </td>
+                    <td>
+                        @for (int i = 0; i < dish.QuantityPer100GramAmount.Count; i++)
+                        {
+                            <p>@dish.QuantityPer100GramAmount[i]</p>
+                        }
+                    </td>
+                    <td>@dish.UnitInStock</td>
+                    <td>@dish.GroupId</td>
+                    <td>@dish.SubgroupId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
