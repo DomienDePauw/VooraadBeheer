@@ -29,6 +29,8 @@
 
             .inventory-table td {
                 background-color: #ffffff;
+                justify-content:center;
+                vertical-align:middle;
             }
 
             .inventory-table img {
@@ -61,32 +63,32 @@
                 @foreach (VBS_FrontEnd.Models.InventoryNames item in Model)
                 {
                     <tr>
-                        <td><img src="@item.PhotoUrl" alt="@item.Name" /></td>
+                        <td><img src="~/Images/@item.PhotoUrl" alt="@item.Name" /></td>
                         <td>@item.Name</td>
                         <td>@item.GroupName</td>
                         <td>@item.SubgroupName</td>
                         <td>@(item.Quantity + "g")</td>
-                        <td>@item.StockDate.ToShortDateString()</td>
+                        <td style="text-align: center; font-weight: bold">@item.StockDate.ToShortDateString()</td>
                         @if (VBS_FrontEnd.Controllers.VBSController.DateChecker(DateTime.Now, item.ExpiryDate))
                         {
                             if (item.ExpiryDate < DateTime.Now)
                             {
-                                <td style="background-color:red">@item.ExpiryDate.ToShortDateString()</td>
+                                <td style="background-color: #FF6B6B; color: #FFFFFF; text-align:center; font-weight:bold">@item.ExpiryDate.ToShortDateString()</td>
                             }
                             else
                             {
-                                <td style="background-color:darkorange">@item.ExpiryDate.ToShortDateString()</td>
+                                <td style="background-color: #FFEB3B; color: #000000; text-align: center; font-weight: bold">@item.ExpiryDate.ToShortDateString()</td>
                             }
                         }
                         @if (!VBS_FrontEnd.Controllers.VBSController.DateChecker(DateTime.Now, item.ExpiryDate))
                         {
                             if (item.ExpiryDate < DateTime.Now)
                             {
-                                <td style="background-color:darkred">@item.ExpiryDate.ToShortDateString()</td>
+                                <td style="background-color: #FF6B6B; color: #FFFFFF; text-align: center; font-weight: bold">@item.ExpiryDate.ToShortDateString()</td>
                             }
                             else
                             {
-                                <td style="background-color:darkgreen">@item.ExpiryDate.ToShortDateString()</td>
+                                <td style="background-color: #4CAF50; color: #FFFFFF; text-align: center; font-weight: bold">@item.ExpiryDate.ToShortDateString()</td>
                             }
                         }
                     </tr>
