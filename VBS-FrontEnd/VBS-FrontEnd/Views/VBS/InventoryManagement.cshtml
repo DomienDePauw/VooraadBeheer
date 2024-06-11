@@ -9,6 +9,35 @@
     <title>Inventory Management</title>
 
     <style>
+        a {
+            padding: 1.3em 3em;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 500;
+            background-color: #343A40;
+            border: none;
+            border-radius: 45px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            outline: none;
+            text-decoration-line: none;
+            text-align: center;
+            vertical-align: middle;
+            color: black;
+        }
+
+            a:hover {
+                background-color: #23c483;
+                box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+                color: black;
+                transform: translateY(-7px);
+            }
+
+            a:active {
+                transform: translateY(-1px);
+            }
         body {
             background: rgb(229,248,254);
             background: linear-gradient(145deg, rgba(229,248,254,1) 0%, rgba(0,115,238,1) 100%);
@@ -19,9 +48,9 @@
             color: white;
         }
 
-        button {
+        .link {
             padding: 1.3em 3em;
-            font-size: 12px;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 2.5px;
             font-weight: 500;
@@ -33,16 +62,19 @@
             transition: all 0.3s ease 0s;
             cursor: pointer;
             outline: none;
+            text-decoration-line:none;
+            text-align:center;
+            vertical-align:middle;
         }
 
-            button:hover {
+            .link:hover {
                 background-color: #23c483;
                 box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
                 color: #fff;
                 transform: translateY(-7px);
             }
 
-            button:active {
+            .link:active {
                 transform: translateY(-1px);
             }
 
@@ -74,16 +106,12 @@
         <div class="buttonWrapper">
 
 
-
-            <button>
-                Recipes
-            </button>
+            <a class="link" href="@Url.Action("Recipes", "VBS")">Recipes</a>
+        
 
 
-
-            <button>
-                View stock 
-            </button>
+            <a class="link" href="@Url.Action("Stock", "VBS")">View stock</a>
+          
 
 
         </div>
