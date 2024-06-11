@@ -70,9 +70,15 @@ namespace VBS_FrontEnd.Controllers {
         }
 
         public ActionResult Stock() {
-            ViewBag.Message = "Stock overview.";
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7078");
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = client.GetAsync($"/api/VBS/GetInventory").Result;
+            string data = response.Content.ReadAsStringAsync().Result;
+            List<InventoryNames> inventory = JsonConvert.DeserializeObject<List<InventoryNames>>(data);
 
-            return View();
+            return View(inventory);
         }
     }
 }

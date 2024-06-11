@@ -1,7 +1,77 @@
-﻿
-@{
-    ViewBag.Title = "Stock";
-}
+﻿@model List<VBS_FrontEnd.Models.InventoryNames>
 
-<h2>Stock</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
 
+        .inventory-table {
+            margin: 20px;
+            border-collapse: collapse;
+            width: 90%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+            .inventory-table th, .inventory-table td {
+                padding: 10px;
+                text-align: left;
+            }
+
+            .inventory-table th {
+                background-color: #343a40;
+                color: #ffffff;
+            }
+
+            .inventory-table td {
+                background-color: #ffffff;
+            }
+
+            .inventory-table img {
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+            }
+
+            .inventory-table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Inventory</h1>
+        <table class="inventory-table table table-bordered">
+            <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Group ID</th>
+                    <th>Subgroup ID</th>
+                    <th>Quantity</th>
+                    <th>Stock Date</th>
+                    <th>Expiry Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><img src="@item.PhotoUrl" alt="@item.Name" /></td>
+                        <td>@item.Name</td>
+                        <td>@item.GroupId</td>
+                        <td>@item.SubgroupId</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.StockDate.ToShortDateString()</td>
+                        <td>@item.ExpiryDate.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

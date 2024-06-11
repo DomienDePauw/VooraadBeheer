@@ -18,7 +18,7 @@ namespace VBS_Api.Controllers {
         public readonly IConfiguration _configuration;
         public readonly SqlConnection _con;
 
-        public VBSController(IConfiguration configuration, SqlConnection con)
+        public VBSController(IConfiguration configuration)
         {
             _configuration = configuration;
             _con = new SqlConnection(_configuration.GetConnectionString("VBSDbConnectionString").ToString());
@@ -97,13 +97,10 @@ namespace VBS_Api.Controllers {
         }
         [HttpGet]
         [Route("GetInventory")]
-        public List<Inventory> GetInventory()
+        public List<InventoryNames> GetInventory()
         {
-            List<Inventory> inventory = new List<Inventory>();
-
-            inventory = InventoryQuery.GetAll(_con);
-
-            return inventory;
+            List<InventoryNames>ttt = new List<InventoryNames>();
+            return ttt;
         }
     }
 }
