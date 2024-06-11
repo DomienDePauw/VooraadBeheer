@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -79,6 +80,19 @@ namespace VBS_FrontEnd.Controllers {
             List<InventoryNames> inventory = JsonConvert.DeserializeObject<List<InventoryNames>>(data);
 
             return View(inventory);
+        }
+        public static bool DateChecker(DateTime vandaag, DateTime expiry)
+        {
+            CultureInfo cultureInfo = CultureInfo.CurrentCulture;
+            Calendar calendar = cultureInfo.Calendar;
+
+            CalendarWeekRule weekRule = cultureInfo.DateTimeFormat.CalendarWeekRule;
+            DayOfWeek firstDayOfWeek = cultureInfo.DateTimeFormat.FirstDayOfWeek;
+
+            int week1 = calendar.GetWeekOfYear(vandaag, weekRule, firstDayOfWeek);
+            int week2 = calendar.GetWeekOfYear(expiry, weekRule, firstDayOfWeek);
+
+            return week1 == week2 && vandaag.Year == expiry.Year;
         }
     }
 }

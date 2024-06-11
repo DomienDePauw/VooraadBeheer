@@ -67,7 +67,28 @@
                         <td>@item.SubgroupName</td>
                         <td>@(item.Quantity + "g")</td>
                         <td>@item.StockDate.ToShortDateString()</td>
-                        <td>@item.ExpiryDate.ToShortDateString()</td>
+                        @if (VBS_FrontEnd.Controllers.VBSController.DateChecker(DateTime.Now, item.ExpiryDate))
+                        {
+                            if (item.ExpiryDate < DateTime.Now)
+                            {
+                                <td style="background-color:red">@item.ExpiryDate.ToShortDateString()</td>
+                            }
+                            else
+                            {
+                                <td style="background-color:darkorange">@item.ExpiryDate.ToShortDateString()</td>
+                            }
+                        }
+                        @if (!VBS_FrontEnd.Controllers.VBSController.DateChecker(DateTime.Now, item.ExpiryDate))
+                        {
+                            if (item.ExpiryDate < DateTime.Now)
+                            {
+                                <td style="background-color:darkred">@item.ExpiryDate.ToShortDateString()</td>
+                            }
+                            else
+                            {
+                                <td style="background-color:darkgreen">@item.ExpiryDate.ToShortDateString()</td>
+                            }
+                        }
                     </tr>
                 }
             </tbody>
