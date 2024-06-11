@@ -1,6 +1,6 @@
 @VBS_Api_HostAddress = http://localhost:5244
 
-GET {{VBS_Api_HostAddress}}/weatherforecast/
+GET {{VBS_Api_HostAddress}}/VBS/
 Accept: application/json
 
 ###
