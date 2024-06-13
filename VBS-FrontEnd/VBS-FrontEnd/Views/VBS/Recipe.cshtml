@@ -6,7 +6,7 @@
 <h2>Recipes</h2>
 
 <style>
-    a {
+    @* a {
         padding: 1.3em 3em;
         font-size: 1rem;
         text-transform: uppercase;
@@ -34,20 +34,14 @@
 
         a:active {
             transform: translateY(-1px);
-        }
+        } *@
 
-    body {
-        background: rgb(229,248,254);
-        background: linear-gradient(145deg, rgba(229,248,254,1) 0%, rgba(0,115,238,1) 100%);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        color: white;
-    }
+        body{
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='2500' height='1000' preserveAspectRatio='none' viewBox='0 0 2500 1000'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1066%26quot%3b)' fill='none'%3e%3crect width='2500' height='1000' x='0' y='0' fill='rgba(242%2c 238%2c 230%2c 1)'%3e%3c/rect%3e%3cpath d='M43 1000L1043 0L1218.5 0L218.5 1000z' fill='url(%26quot%3b%23SvgjsLinearGradient1067%26quot%3b)'%3e%3c/path%3e%3cpath d='M658 1000L1658 0L1901 0L901 1000z' fill='url(%26quot%3b%23SvgjsLinearGradient1067%26quot%3b)'%3e%3c/path%3e%3cpath d='M1102 1000L2102 0L2406.5 0L1406.5 1000z' fill='url(%26quot%3b%23SvgjsLinearGradient1067%26quot%3b)'%3e%3c/path%3e%3cpath d='M2495 1000L1495 0L1411 0L2411 1000z' fill='url(%26quot%3b%23SvgjsLinearGradient1068%26quot%3b)'%3e%3c/path%3e%3cpath d='M1888 1000L888 0L739.5 0L1739.5 1000z' fill='url(%26quot%3b%23SvgjsLinearGradient1068%26quot%3b)'%3e%3c/path%3e%3cpath d='M1359 1000L359 0L-455.5 0L544.5 1000z' fill='url(%26quot%3b%23SvgjsLinearGradient1068%26quot%3b)'%3e%3c/path%3e%3cpath d='M1635.5478103753208 1000L2500 135.54781037532086L2500 1000z' fill='url(%26quot%3b%23SvgjsLinearGradient1067%26quot%3b)'%3e%3c/path%3e%3cpath d='M0 1000L864.4521896246791 1000L 0 135.54781037532086z' fill='url(%26quot%3b%23SvgjsLinearGradient1068%26quot%3b)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1066'%3e%3crect width='2500' height='1000' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='0%25' y1='100%25' x2='100%25' y2='0%25' id='SvgjsLinearGradient1067'%3e%3cstop stop-color='rgba(241%2c 28%2c 25%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-opacity='0' stop-color='rgba(241%2c 28%2c 25%2c 1)' offset='0.66'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='100%25' y1='100%25' x2='0%25' y2='0%25' id='SvgjsLinearGradient1068'%3e%3cstop stop-color='rgba(241%2c 28%2c 25%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-opacity='0' stop-color='rgba(241%2c 28%2c 25%2c 1)' offset='0.66'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");            background-attachment: fixed;       
 
     .recipe-container {
         padding: 20px;
-        background-color: #f2f2f2; /* Added background color for better visualization */
+        @* background-color: #f2f2f2; /* Added background color for better visualization */ *@
         width: 100%;
     }
 
@@ -55,6 +49,7 @@
         gap: 20px;
         padding: 20px;
         width: 100%;
+         @* background-color: #f2eee6; *@
     }
 
     .dish-card {
@@ -79,6 +74,7 @@
     .dish-info {
         padding: 10px;
         text-align: center;
+        background-color: #f2eee6; 
     }
 
     .dish-name {
@@ -88,34 +84,45 @@
     }
 
     .group {
-        width: 50%
+        width: 50%;
+        background-color: #f2eee6;         
     }
 
     .requirement {
-        width: 50%
+        width: 50%;
+        background-color: #f2eee6; 
     }
 
+
     .groups-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        flex-wrap: wrap;
         gap: 10px;
         margin-top: 20px;
         width: 100%;
-        float: right;
+        float: center;
     }
 
     .requirements-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+
+        margin-left: 15px;
+  
+         display: flex;
+        flex-wrap: wrap;
         gap: 10px;
         margin-top: 20px;
         width: 100%;
+        float: center;
+        height: 75px;
     }
 
     .requirement-item {
         border: 1px solid #ddd;
+        border-radius: 15px;
         padding: 10px;
         height: 3rem;
+        width: 130px;
+        
     }
 
     .groups {
@@ -144,6 +151,7 @@
         margin: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.2s;
+         background-color: #f2eee6;  
     }
 
         .dish-card2:hover {
@@ -183,12 +191,12 @@
         <div class="dish-card">
             <img src="~/Images/@Model[0].PhotoUrl" alt="Gerecht Foto" class="dish-image">
             <div class="dish-info">
-                <div class="dish-name">Name: @Model[0].Name</div>
-                <div class="dish-name">Gewicht: @Model[0].UnitInStock</div>
+                <div class="dish-name"><span><strong>Name:</strong></span> @Model[0].Name</div>
+                <div class="dish-name"><span><strong>Weight:</strong></span> @Model[0].UnitInStock</div>
             </div>
             <div class="grids">
                 <div class="requirement">
-                    <h2>Requirements</h2>
+                    <h2 style="margin-left: 15px;">Requirements</h2>
                     <div class="requirements-grid">
                         @for (int i = 0; i < Model[0].Requirements.Count; i++)
                         {
@@ -202,10 +210,10 @@
                     <h2>Type</h2>
                     <div class="groups-grid">
                         <div class="groups">
-                            @Model[0].GroupName
+                           <span><strong>Group:</strong></span> @Model[0].GroupName
                         </div>
                         <div class="groups">
-                            @Model[0].SubgroupName
+                           <span><strong>Subgroup:</strong></span> @Model[0].SubgroupName
                         </div>
                     </div>
                 </div>
@@ -221,9 +229,9 @@
             <div class="dish-card2">
                 <a href="@Url.Action("Recipe", "VBS", new { Id = Model[i].Id })" class="dish-link2">
                     <img src="~/Images/@Model[i].PhotoUrl" alt="Gerecht Foto" class="dish-image2">
-                    <div class="dish-info2">
-                        <div class="dish-name2">Name: @Model[i].Name</div>
-                        <div class="dish-group2">Categorie: @Model[i].GroupName</div>
+                    <div class="dish-info2"> 
+                        <div class="dish-name2"><span><strong>Name:</strong></span> @Model[i].Name</div>
+                        <div class="dish-group2"><span><strong>Categorie:</strong></span> @Model[i].GroupName</div>
                     </div>
                 </a>
             </div>
