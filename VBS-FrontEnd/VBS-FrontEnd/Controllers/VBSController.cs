@@ -57,7 +57,7 @@ namespace VBS_FrontEnd.Controllers {
             client.BaseAddress = new Uri("https://localhost:7078");
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = client.GetAsync($"/api/VBS/GetAllDishes{subId}").Result;
+            HttpResponseMessage response = client.GetAsync($"/api/VBS/GetAllDishes").Result;
             string data = response.Content.ReadAsStringAsync().Result;
             List<Dish> dishes = JsonConvert.DeserializeObject<List<Dish>>(data);
 

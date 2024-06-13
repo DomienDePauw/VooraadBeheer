@@ -68,7 +68,7 @@ namespace VBS_Api.Controllers {
                     Name = (string)dataRow["Name"],
                     PhotoUrl = (string)dataRow["PhotoUrl"],
                     Requirements = dataRow["Requirements"].ToString().Trim().Split(", ").ToList(),
-                    QuantityPer100GramAmount = dataRow["QuantityPer100GramAmount"].ToString().Trim().Split(", ").ToList().Select(int.Parse).ToList(),
+                    QuantityPer100GramAmount = dataRow["QuantityPer100GramAmount"].ToString().Trim().Split(",").ToList().Select(int.Parse).ToList(),
                     UnitInStock = (string)dataRow["UnitInStock"],
                     GroupName = (string)dataRow["GroupName"],
                     SubgroupName = (string)dataRow["SubgroupName"]
