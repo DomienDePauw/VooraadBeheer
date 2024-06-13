@@ -14,15 +14,9 @@ namespace VBS_FrontEnd.Controllers {
     public class VBSController : Controller {
 
         public ActionResult Home() {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:7078");
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = client.GetAsync("/api/VBS/GetAllDishes").Result;
-            string data = response.Content.ReadAsStringAsync().Result;
-            List<Dish> dishes = JsonConvert.DeserializeObject<List<Dish>>(data);
 
-            return View(dishes);
+
+            return View();
         }
 
         public ActionResult AddFood() {
